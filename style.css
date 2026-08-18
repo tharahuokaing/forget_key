@@ -333,14 +333,3 @@ p {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
 }
-
-:root {
-    --bg-dark: #070913;
-    --card-bg: rgba(14, 18, 36, 0.85);
-    --gold-primary: #ffd700;
-    --gold-secondary: #ff8c00;
-    --cyan-primary: #00f0ff;
-    --cyan-glow: rgba(0, 240, 255, 0.4);
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-display: 'Rajdhani', sans-serif;
-}
