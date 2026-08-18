@@ -1,192 +1,183 @@
 /* ==========================================================================
-   FORGOT KEY / PASSCODE RECOVERY MODAL STYLES
+   CORE STYLES & RESET
    ========================================================================== */
-
-/* Fullscreen Overlay */
-.forgot-modal-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(2, 6, 23, 0.88);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10060;
-    opacity: 1;
-    transition: opacity 0.25s ease;
+:root {
+    --bg-dark: #070913;
+    --card-bg: #0e1224;
+    --gold-primary: #ffd700;
+    --gold-secondary: #ff8c00;
+    --cyan-primary: #00f0ff;
+    --text-main: #f0f4f8;
+    --text-muted: #8a99ad;
+    --border-dark: #1e293b;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Rajdhani', sans-serif;
 }
 
-.forgot-modal-overlay.hidden,
-.forgot-form-step.hidden {
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-display);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
     display: none !important;
 }
 
-/* Glass Frame */
-.forgot-modal-frame {
-    position: relative;
-    width: 90%;
-    max-width: 440px;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 215, 0, 0.2);
-    animation: forgotSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* ==========================================================================
+   CARD & LAYOUT
+   ========================================================================== */
+.dashboard-viewport {
+    width: 100%;
+    max-width: 480px;
+    padding: 1.5rem;
 }
 
-@keyframes forgotSlideUp {
-    from { transform: translateY(20px) scale(0.95); opacity: 0; }
-    to { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-/* Close Button */
-.close-forgot-btn {
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #94a3b8;
-    font-size: 1.3rem;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.2s ease;
-}
-
-.close-forgot-btn:hover {
-    background: rgba(255, 0, 85, 0.2);
-    color: #ff0055;
-    border-color: #ff0055;
-}
-
-/* Header Section */
-.forgot-header {
+.recovery-card, .modal-frame {
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-align: center;
-    margin-bottom: 24px;
 }
 
-.forgot-icon {
-    font-size: 2.2rem;
-    display: inline-block;
-    margin-bottom: 8px;
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
-}
-
-.forgot-header h3 {
-    margin: 0 0 6px 0;
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #ffd700;
+h2, h3 {
+    color: var(--gold-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
     letter-spacing: 1px;
-    font-family: var(--font-mono, monospace);
 }
 
-.forgot-header p {
-    margin: 0;
-    font-size: 0.78rem;
-    color: #94a3b8;
-    line-height: 1.4;
+p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
 }
 
-/* Input Fields & PIN inputs */
+/* ==========================================================================
+   BUTTONS & INPUTS
+   ========================================================================== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 0.85rem 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+}
+
+.full-width {
+    width: 100%;
+}
+
 .input-field-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 20px;
+    text-align: left;
+    margin-bottom: 1.25rem;
 }
 
 .input-field-group label {
-    font-size: 0.65rem;
+    display: block;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: #ffd700;
-    letter-spacing: 0.8px;
-    font-family: var(--font-mono, monospace);
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 0.4rem;
 }
 
 .input-wrapper {
-    position: relative;
     display: flex;
     align-items: center;
+    background: rgba(5, 8, 18, 0.8);
+    border: 1px solid var(--border-dark);
+    border-radius: 6px;
+    padding: 0.75rem;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--gold-primary);
 }
 
 .input-icon {
-    position: absolute;
-    left: 12px;
-    font-size: 0.85rem;
-    opacity: 0.7;
+    margin-right: 0.75rem;
 }
 
 .input-wrapper input {
-    width: 100%;
-    padding: 12px 12px 12px 38px;
-    background: rgba(2, 6, 23, 0.8);
-    border: 1px solid rgba(255, 215, 0, 0.25);
-    border-radius: 10px;
-    color: #ffffff;
-    font-family: var(--font-mono, monospace);
-    font-size: 0.85rem;
+    background: transparent;
+    border: none;
     outline: none;
-    transition: all 0.25s ease;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    width: 100%;
 }
 
-.input-wrapper input:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
-}
-
-/* 6-Digit PIN Row */
-.pin-input-group {
+/* ==========================================================================
+   MODAL OVERLAY
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 5, 12, 0.88);
+    backdrop-filter: blur(8px);
     display: flex;
-    gap: 8px;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
 }
 
-.pin-digit {
-    width: 48px;
-    height: 52px;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 800;
-    font-family: var(--font-mono, monospace);
-    background: rgba(2, 6, 23, 0.8);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 10px;
-    color: #ffd700;
-    outline: none;
-    transition: all 0.2s ease;
-}
-
-.pin-digit:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Submit Buttons */
-.btn-forgot-submit {
+.modal-frame {
+    position: relative;
     width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 140, 0, 0.15) 100%);
-    border: 1px solid #ffd700;
-    border-radius: 10px;
-    color: #ffd700;
-    font-family: var(--font-mono, monospace);
-    font-weight: 800;
-    font-size: 0.85rem;
-    letter-spacing: 1.2px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    max-width: 440px;
 }
 
-.btn-forgot-submit:hover {
-    background: #ffd700;
-    color: #020617;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
-    transform: translateY(-1px);
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--gold-primary);
+}
+
+.modal-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.status-alert {
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid var(--cyan-primary);
+    color: var(--cyan-primary);
 }
