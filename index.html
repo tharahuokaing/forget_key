@@ -1,70 +1,227 @@
-<!-- Forgot Key / Password Recovery Modal Overlay -->
-<div id="forgot-key-overlay" class="forgot-modal-overlay hidden" aria-hidden="true">
-    <div class="forgot-modal-frame led-running-card gold-vip">
-        <!-- Close Button -->
-        <button id="close-forgot-btn" class="close-forgot-btn" type="button" aria-label="Close modal">&times;</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER HUD & HIGH-ROLLER VAULT</title>
+    <!-- Modern Cyber Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="forgot-key.css">
+</head>
+<body>
 
-        <div class="forgot-header">
-            <span class="forgot-icon">🔑</span>
-            <h3 id="forgot-modal-title">SECURITY KEY RECOVERY</h3>
-            <p id="forgot-modal-subtitle">Enter your registered email to receive an emergency recovery code.</p>
+    <!-- Main Navigation HUD Segment -->
+    <header class="cyber-hud-bar" role="banner">
+        <!-- Primary VIP Balance Card -->
+        <div class="balance-card">
+            <span class="currency-symbol">$</span>
+            <span id="hud-balance-display">1,000,000.00</span>
+            <span class="vip-badge-shimmer">VIP</span>
         </div>
 
-        <!-- STEP 1: Enter Email / Username -->
-        <form id="forgot-step1-form" class="forgot-form-step">
-            <div class="input-field-group">
-                <label for="recovery-identity">REGISTERED EMAIL OR HANDLE</label>
-                <div class="input-wrapper">
-                    <span class="input-icon">✉️</span>
-                    <input type="text" id="recovery-identity" placeholder="player@domain.com" required autocomplete="email">
-                </div>
-            </div>
-
-            <button type="submit" id="btn-send-code" class="btn-forgot-submit">
-                <span>SEND RECOVERY CODE</span> ⚡
+        <!-- Navigation Action Triggers -->
+        <div class="hud-action-group">
+            <!-- Auth Trigger Button -->
+            <button id="open-auth-trigger" type="button" class="btn-auth-open" aria-label="Login or Register">
+                <span class="btn-icon">🔐</span> LOGIN / REGISTER
             </button>
-        </form>
 
-        <!-- STEP 2: Enter 6-Digit PIN (Hidden initially) -->
-        <form id="forgot-step2-form" class="forgot-form-step hidden">
-            <div class="input-field-group">
-                <label for="recovery-pin">ENTER 6-DIGIT VERIFICATION PIN</label>
-                <div class="pin-input-group">
-                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
-                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
-                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
-                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
-                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
-                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
-                </div>
-            </div>
-
-            <button type="submit" id="btn-verify-pin" class="btn-forgot-submit">
-                <span>VERIFY CODE</span> 🛡️
+            <!-- Performance Analytics Drawer Trigger -->
+            <button id="open-analytics-btn" type="button" class="btn-analytics-open" aria-label="Open Performance Analytics">
+                <span class="btn-icon">📊</span> ANALYTICS
             </button>
-        </form>
 
-        <!-- STEP 3: Reset Security Passcode (Hidden initially) -->
-        <form id="forgot-step3-form" class="forgot-form-step hidden">
-            <div class="input-field-group">
-                <label for="new-passcode">NEW SECURITY PASSCODE</label>
-                <div class="input-wrapper">
-                    <span class="input-icon">🔒</span>
-                    <input type="password" id="new-passcode" placeholder="••••••••••••" required minlength="6">
-                </div>
-            </div>
-
-            <div class="input-field-group">
-                <label for="confirm-passcode">CONFIRM NEW PASSCODE</label>
-                <div class="input-wrapper">
-                    <span class="input-icon">🔒</span>
-                    <input type="password" id="confirm-passcode" placeholder="••••••••••••" required minlength="6">
-                </div>
-            </div>
-
-            <button type="submit" id="btn-reset-passcode" class="btn-forgot-submit btn-gold-accent">
-                <span>UPDATE PASSCODE</span> 🚀
+            <!-- Transaction Ledger Modal Trigger -->
+            <button id="open-ledger-trigger" type="button" class="btn-ledger-open" aria-label="Open Ledger History">
+                <span class="btn-icon">📜</span> LEDGER HISTORY
             </button>
-        </form>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Hero Area -->
+    <main class="dashboard-viewport">
+        <section class="led-running-card gold-vip main-status-panel">
+            <div class="status-content">
+                <h2>HIGH-ROLLER VAULT ACTIVE</h2>
+                <p>System operational. Select an action from the HUD header above or authenticate your session.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+       MODAL 1: AUTHENTICATION OVERLAY (LOGIN / REGISTER)
+       ========================================================================== -->
+    <div id="auth-modal-overlay" class="auth-modal-overlay hidden" aria-hidden="true">
+        <div class="auth-modal-frame led-running-card">
+            <!-- Close Button -->
+            <button id="close-auth-btn" class="close-auth-btn" type="button" aria-label="Close Authentication">&times;</button>
+
+            <!-- Auth Tab Navigation -->
+            <div class="auth-tabs">
+                <button id="tab-login-btn" class="auth-tab-btn active" data-tab="login" type="button">
+                    <span class="tab-icon">🔑</span> LOGIN
+                </button>
+                <button id="tab-register-btn" class="auth-tab-btn" data-tab="register" type="button">
+                    <span class="tab-icon">⚡</span> REGISTER
+                </button>
+            </div>
+
+            <div class="auth-body">
+                <!-- Login Form -->
+                <form id="auth-login-form" class="auth-form">
+                    <div class="auth-header-text">
+                        <h3>WELCOME BACK, HIGH-ROLLER</h3>
+                        <p>Enter your credentials to access your session wallet.</p>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="login-username">HANDLE / USERNAME</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="login-username" placeholder="CyberPlayer77" required autocomplete="username">
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="login-password">SECURITY PASSCODE</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="login-password" placeholder="••••••••••••" required autocomplete="current-password">
+                        </div>
+                    </div>
+
+                    <div class="auth-form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="login-remember">
+                            <span>Remember Session</span>
+                        </label>
+                        <a href="#" class="forgot-pass-link">Forgot Key?</a>
+                    </div>
+
+                    <button type="submit" class="btn-auth-submit">
+                        <span>AUTHENTICATE</span> ⚡
+                    </button>
+                </form>
+
+                <!-- Register Form (Hidden by default) -->
+                <form id="auth-register-form" class="auth-form hidden">
+                    <div class="auth-header-text">
+                        <h3>JOIN THE HIGH-ROLLER CLUB</h3>
+                        <p>Create a secure vault account to store your casino credits.</p>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="reg-username">NEW HANDLE</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="reg-username" placeholder="VipPlayer99" required minlength="3">
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="reg-email">COMM CHANNEL (EMAIL)</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉️</span>
+                            <input type="email" id="reg-email" placeholder="player@domain.com" required>
+                        </div>
+                    </div>
+
+                    <div class="input-field-group">
+                        <label for="reg-password">SET PASSCODE</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔑</span>
+                            <input type="password" id="reg-password" placeholder="••••••••••••" required minlength="6">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-auth-submit btn-register-accent">
+                        <span>INITIALIZE ACCOUNT</span> 🚀
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- ==========================================================================
+       MODAL 2: FORGOT KEY / PASSCODE RECOVERY OVERLAY
+       ========================================================================== -->
+    <div id="forgot-key-overlay" class="forgot-modal-overlay hidden" aria-hidden="true">
+        <div class="forgot-modal-frame led-running-card gold-vip">
+            <!-- Close Button -->
+            <button id="close-forgot-btn" class="close-forgot-btn" type="button" aria-label="Close modal">&times;</button>
+
+            <div class="forgot-header">
+                <span class="forgot-icon">🔑</span>
+                <h3 id="forgot-modal-title">SECURITY KEY RECOVERY</h3>
+                <p id="forgot-modal-subtitle">Enter your registered email to receive an emergency recovery code.</p>
+            </div>
+
+            <!-- STEP 1: Enter Email / Username -->
+            <form id="forgot-step1-form" class="forgot-form-step">
+                <div class="input-field-group">
+                    <label for="recovery-identity">REGISTERED EMAIL OR HANDLE</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉️</span>
+                        <input type="text" id="recovery-identity" placeholder="player@domain.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-send-code" class="btn-forgot-submit">
+                    <span>SEND RECOVERY CODE</span> ⚡
+                </button>
+            </form>
+
+            <!-- STEP 2: Enter 6-Digit PIN (Hidden initially) -->
+            <form id="forgot-step2-form" class="forgot-form-step hidden">
+                <div class="input-field-group">
+                    <label>ENTER 6-DIGIT VERIFICATION PIN</label>
+                    <div class="pin-input-group">
+                        <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                        <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                        <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                        <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                        <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                        <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-verify-pin" class="btn-forgot-submit">
+                    <span>VERIFY CODE</span> 🛡️
+                </button>
+            </form>
+
+            <!-- STEP 3: Reset Security Passcode (Hidden initially) -->
+            <form id="forgot-step3-form" class="forgot-form-step hidden">
+                <div class="input-field-group">
+                    <label for="new-passcode">NEW SECURITY PASSCODE</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="new-passcode" placeholder="••••••••••••" required minlength="6">
+                    </div>
+                </div>
+
+                <div class="input-field-group">
+                    <label for="confirm-passcode">CONFIRM NEW PASSCODE</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="confirm-passcode" placeholder="••••••••••••" required minlength="6">
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-reset-passcode" class="btn-forgot-submit btn-gold-accent">
+                    <span>UPDATE PASSCODE</span> 🚀
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Controllers -->
+    <script src="auth-system.js"></script>
+    <script src="forgot-key.js"></script>
+</body>
+</html>
