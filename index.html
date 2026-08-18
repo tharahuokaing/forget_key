@@ -1,0 +1,70 @@
+<!-- Forgot Key / Password Recovery Modal Overlay -->
+<div id="forgot-key-overlay" class="forgot-modal-overlay hidden" aria-hidden="true">
+    <div class="forgot-modal-frame led-running-card gold-vip">
+        <!-- Close Button -->
+        <button id="close-forgot-btn" class="close-forgot-btn" type="button" aria-label="Close modal">&times;</button>
+
+        <div class="forgot-header">
+            <span class="forgot-icon">🔑</span>
+            <h3 id="forgot-modal-title">SECURITY KEY RECOVERY</h3>
+            <p id="forgot-modal-subtitle">Enter your registered email to receive an emergency recovery code.</p>
+        </div>
+
+        <!-- STEP 1: Enter Email / Username -->
+        <form id="forgot-step1-form" class="forgot-form-step">
+            <div class="input-field-group">
+                <label for="recovery-identity">REGISTERED EMAIL OR HANDLE</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">✉️</span>
+                    <input type="text" id="recovery-identity" placeholder="player@domain.com" required autocomplete="email">
+                </div>
+            </div>
+
+            <button type="submit" id="btn-send-code" class="btn-forgot-submit">
+                <span>SEND RECOVERY CODE</span> ⚡
+            </button>
+        </form>
+
+        <!-- STEP 2: Enter 6-Digit PIN (Hidden initially) -->
+        <form id="forgot-step2-form" class="forgot-form-step hidden">
+            <div class="input-field-group">
+                <label for="recovery-pin">ENTER 6-DIGIT VERIFICATION PIN</label>
+                <div class="pin-input-group">
+                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                    <input type="text" maxlength="1" class="pin-digit" required pattern="[0-9]" inputmode="numeric">
+                </div>
+            </div>
+
+            <button type="submit" id="btn-verify-pin" class="btn-forgot-submit">
+                <span>VERIFY CODE</span> 🛡️
+            </button>
+        </form>
+
+        <!-- STEP 3: Reset Security Passcode (Hidden initially) -->
+        <form id="forgot-step3-form" class="forgot-form-step hidden">
+            <div class="input-field-group">
+                <label for="new-passcode">NEW SECURITY PASSCODE</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="new-passcode" placeholder="••••••••••••" required minlength="6">
+                </div>
+            </div>
+
+            <div class="input-field-group">
+                <label for="confirm-passcode">CONFIRM NEW PASSCODE</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="confirm-passcode" placeholder="••••••••••••" required minlength="6">
+                </div>
+            </div>
+
+            <button type="submit" id="btn-reset-passcode" class="btn-forgot-submit btn-gold-accent">
+                <span>UPDATE PASSCODE</span> 🚀
+            </button>
+        </form>
+    </div>
+</div>
